@@ -22,14 +22,17 @@ def deposit():
 def withdraw():
     global total
     print("*************")
-    negative = input("Enter how much you would like to withdraw: ")
+    negative = int(input("Enter how much you would like to withdraw: "))
     print("*************")
-    total -= negative
-    time.sleep(3)
-    print (f"your withdrawl of {negative: .2f} was withdrawed from your account")
+    if negative > total:
+        print("insufficient funds")
+    else:
+        total -= negative
+        time.sleep(2)
+        print (f"your withdrawl of {negative: .2f} was withdrawed from your account")
 
 
-
+cont = True
 
 
 while cont:
@@ -42,8 +45,6 @@ while cont:
     print("4. Exit")
     print("*************")
     
-    cont = True
-    
     choice = int(input("Enter Your Choice (1-4): "))
 
     def play(choice):
@@ -53,12 +54,11 @@ while cont:
             case 2:
                 print(deposit())
             case 3:
-                print(withdraw())
+                withdraw()
             case 4:
                 cont = False
             case _:
                 print("not a valid Choice")
 
     print(play(choice))
-
-
+    
